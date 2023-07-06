@@ -35,10 +35,19 @@ public class AdditionControllerTest {
     }
 
     @Test
-    public void doesNotAllowNullInputRespondsBadRequest() {
+    public void doesNotAllowNullFirstInputRespondsBadRequest() {
         ResponseEntity<Object> expectedResponse = ResponseEntity.badRequest().build();
 
         ResponseEntity<String> actualResponse = controller.handle(null, 2);
+
+        assertEquals(expectedResponse, actualResponse);
+    }
+
+    @Test
+    public void doesNotAllowNullSecondInputRespondsBadRequest() {
+        ResponseEntity<Object> expectedResponse = ResponseEntity.badRequest().build();
+
+        ResponseEntity<String> actualResponse = controller.handle(1, null);
 
         assertEquals(expectedResponse, actualResponse);
     }

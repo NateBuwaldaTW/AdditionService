@@ -8,7 +8,7 @@ public class AdditionController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<String> handle(Integer firstInput, Integer secondInput) {
-        if (firstInput == null) {
+        if (firstInput == null || secondInput == null) {
             return ResponseEntity.badRequest().build();
         }
 
