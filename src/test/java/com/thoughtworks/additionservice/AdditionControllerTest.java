@@ -34,4 +34,13 @@ public class AdditionControllerTest {
         assertEquals(expectedBody, actualResponse.getBody());
     }
 
+    @Test
+    public void doesNotAllowNullInputRespondsBadRequest() {
+        ResponseEntity<Object> expectedResponse = ResponseEntity.badRequest().build();
+
+        ResponseEntity<String> actualResponse = controller.handle(null);
+
+        assertEquals(expectedResponse, actualResponse);
+    }
+
 }

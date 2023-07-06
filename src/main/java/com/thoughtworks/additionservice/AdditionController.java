@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AdditionController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<String> handle(int firstInput) {
+    public ResponseEntity<String> handle(Integer firstInput) {
+        if (firstInput == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
         return ResponseEntity.ok().body(Integer.toString(firstInput));
     }
 }
