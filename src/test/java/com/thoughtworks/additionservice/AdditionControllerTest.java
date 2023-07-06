@@ -1,5 +1,6 @@
 package com.thoughtworks.additionservice;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
@@ -7,12 +8,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AdditionControllerTest {
 
+    private AdditionController controller;
+
+    @BeforeEach
+    void setUp() {
+        controller = new AdditionController();
+    }
+
     @Test
     public void returnsOk() {
         String expectedBody = "0";
         ResponseEntity<String> expectedResponse = ResponseEntity.ok().body(expectedBody);
 
-        AdditionController controller = new AdditionController();
         ResponseEntity<String> actualResponse = controller.handle(0);
 
         assertEquals(expectedResponse, actualResponse);
@@ -22,7 +29,6 @@ public class AdditionControllerTest {
     public void acceptsInput() {
         String expectedBody = "1";
 
-        AdditionController controller = new AdditionController();
         ResponseEntity<String> actualResponse = controller.handle(1);
 
         assertEquals(expectedBody, actualResponse.getBody());
